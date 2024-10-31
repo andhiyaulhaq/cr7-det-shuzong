@@ -55,10 +55,30 @@ Inference package requires Python 3.8 ≤ version ≤ 3.11
 
 ### Script Description
 
-- `face-image.py` : Detects faces from a selected local image. This script allows the user to select an image file from their system, performs face detection, and displays the results.
-- `face-webcam.py` : Detects faces in real-time using a webcam. It continuously processes webcam video frames for face detection and displays the results live.
 - `steel-image.py` : Detects defects on a selected steel sheet image. This script identifies defects on the steel sheet and overlays defect names with confidence percentages directly onto the image.
 - `steel-image-detail.py` : Processes an image of a steel sheet to identify defects, similar to `steel-image.py`. However, defect details (including confidence percentages) are organized in a table instead of directly on the image. Each defect has a unique ID, displayed on the processed image.
+- `face-image.py` : Detects faces from a selected local image. This script allows the user to select an image file from their system, performs face detection, and displays the results.
+- `face-webcam.py` : Detects faces in real-time using a webcam. It continuously processes webcam video frames for face detection and displays the results live.
+
+### Sample Result
+
+Here are some examples of the detection results:
+
+#### Steel Image Detection
+
+![Steel Image Detection Result](assets/steel-image.png)
+
+#### Steel Image Detection with Details
+
+![Steel Image Detection with Details Result](assets/steel-image-detail.png)
+
+#### Face Image Detection
+
+![Face Image Detection Result](assets/face-image.png)
+
+#### Real-Time Face Detection
+
+![Real-Time Face Detection Result](assets/face-webcam.gif)
 
 ### License
 
