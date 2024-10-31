@@ -3,14 +3,19 @@ from PIL import Image, ImageTk
 import cv2
 import time
 from inference.models.utils import get_roboflow_model
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Roboflow model details
-model_name = "face-detection-mik1i"
-model_version = "18"
-api_key = "kpZmuqOmaWfbgjr8KNW0"  # Replace with your actual API key
+model_name = "cr7-det-shuzong-dataset"
+model_version = "2"
+
+API_KEY = os.getenv("API_KEY")  # Replace with your actual API key
 
 # Load the Roboflow face detection model
-model = get_roboflow_model(model_id=f"{model_name}/{model_version}", api_key=api_key)
+model = get_roboflow_model(model_id=f"{model_name}/{model_version}", api_key=API_KEY)
 
 # Global variables
 cap = None
@@ -66,11 +71,9 @@ def update_frame():
             # Display processing time
             end_time = time.time()
             processing_time = (end_time - start_time) * 1000  # in milliseconds
-            processing_text = f"Total processing time: {processing_time:.1f}ms"
-            processing_textbox.configure(state="normal")
-            processing_textbox.delete("1.0", tk.END)
-            processing_textbox.insert(tk.END, processing_text)
-            processing_textbox.configure(state="disabled")
+            processing_label.config(
+                text=f"Total processing time: {processing_time:.1f}ms"
+            )
 
             # Show FPS
             fps = 1 / (end_time - start_time)
@@ -91,7 +94,24 @@ def pause_camera():
 # Create Tkinter window
 root = tk.Tk()
 root.title("Roboflow Face Detection Viewer")
-root.geometry("600x700")
+root.geometry("500x500")
+
+# Image display label with a grey placeholder
+placeholder_image = Image.new("RGB", (400, 300), "grey")  # Create a grey placeholder
+placeholder_photo = ImageTk.PhotoImage(placeholder_image)
+
+image_label = tk.Label(root, image=placeholder_photo)  # Set the placeholder image
+image_label.pack(pady=10)
+
+# FPS display label
+fps_label = tk.Label(root, text="FPS: 0.00")
+fps_label.pack(pady=5)
+
+# Processing time display label initialized with placeholder text
+processing_label = tk.Label(
+    root, text="Total processing time: 0.0ms", font=("Arial", 10)
+)
+processing_label.pack(pady=5)
 
 # Start camera button
 start_button = tk.Button(root, text="Start Camera", command=start_camera)
@@ -100,27 +120,6 @@ start_button.pack(pady=10)
 # Pause camera button
 pause_button = tk.Button(root, text="Pause", command=pause_camera, state=tk.DISABLED)
 pause_button.pack(pady=10)
-
-# Image display label
-image_label = tk.Label(root)
-image_label.pack(pady=10)
-
-# FPS display label
-fps_label = tk.Label(root, text="FPS: 0.00")
-fps_label.pack(pady=5)
-
-# Processing time display
-processing_textbox = tk.Text(
-    root,
-    height=2,
-    width=60,
-    wrap="word",
-    font=("Arial", 10),
-    bg=root.cget("bg"),
-    relief="flat",
-)
-processing_textbox.pack(pady=5)
-processing_textbox.configure(state="disabled")
 
 # Run the Tkinter main loop
 root.mainloop()
