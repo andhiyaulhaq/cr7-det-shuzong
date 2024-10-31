@@ -10,14 +10,17 @@ dataset : in `rolled data` folder (source: https://github.com/jsq0903/CR7-DET)
 
 ### Note
 
-Inference package requires Python : 3.8 <= version <= 3.11
+Inference package requires Python 3.8 ≤ version ≤ 3.11
 
-### Setup
+### Setup and Usage
 
-1. clone this repo
-2. `python -m venv .venv` (use Python : 3.8 <= version <= 3.11)
-3. `source .venv/Scripts/activate` (on windows: `.venv\Scripts\activate`)
-4. `pip install -r requirements.txt`
+1. Clone this repository.
+2. Create a virtual environment: `python -m venv .venv` (use Python 3.8 ≤ version ≤ 3.11).
+3. Activate the virtual environment:
+   - On macOS/Linux: `source .venv/bin/activate`
+   - On Windows: `.venv\Scripts\activate`
+4. Install dependencies: `pip install -r requirements.txt`
+5. Run the script: `python <script>` (e.g., `python steel-image-detail.py`)
 
 ### Description
 
