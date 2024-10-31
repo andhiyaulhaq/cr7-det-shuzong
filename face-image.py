@@ -4,17 +4,19 @@ from PIL import Image, ImageTk
 import cv2
 from inference.models.utils import get_roboflow_model
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Roboflow model details
-model_name = "face-detection-mik1i"
-model_version = "18"
-API_KEY = "kpZmuqOmaWfbgjr8KNW0"
+model_name = "cr7-det-shuzong-dataset"
+model_version = "2"
 
-# Get Roboflow face model
-model = get_roboflow_model(
-    model_id=f"{model_name}/{model_version}",
-    api_key=API_KEY,  # Replace with your actual API key
-)
+API_KEY = os.getenv("API_KEY")  # Replace with your actual API key
+
+# Load the Roboflow face detection model
+model = get_roboflow_model(model_id=f"{model_name}/{model_version}", api_key=API_KEY)
 
 
 def open_and_detect_image():
@@ -95,7 +97,7 @@ def open_and_detect_image():
 # Create the main window
 root = tk.Tk()
 root.title("Roboflow Face Detection Viewer")
-root.geometry("600x700")  # Set fixed size to 600x700
+root.geometry("500x500")  # Set fixed size to 600x700
 
 # Create a button to open and detect objects in the image
 open_image_button = tk.Button(
