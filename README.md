@@ -20,7 +20,7 @@ Inference package requires Python 3.8 ≤ version ≤ 3.11
 
 ### Setup and Usage
 
-1. Clone this repository.
+1. Clone this repository and navigate into the project directory.
 2. Create a virtual environment (use Python 3.8 ≤ version ≤ 3.11):
 
    ```bash
